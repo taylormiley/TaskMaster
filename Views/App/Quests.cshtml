@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section Scripts {
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+
+    <environment names="Development">
+        <script src="~/js/simpleControls.js"></script>
+        <script src="~/js/app-quests.js"></script>
+        <script src="~/js/questsController.js"></script>
+        <script src="~/js/questEditorController.js"></script>
+    </environment>
+
+<environment names="Production,Staging">
+    <script src="~/lib/_app/simpleControls.js"></script>
+    <script src="~/lib/_app/app-quests.js"></script>
+    <script src="~/lib/_app/questsController.js"></script>
+    <script src="~/lib/_app/questEditorController.js"></script>
+</environment>
+}
+<div class="row" ng-app="app-quests">
+
+    <div ng-view></div>
+
+</div>
+

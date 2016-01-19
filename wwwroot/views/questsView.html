@@ -1,0 +1,32 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <div class="text-danger" ng-show="vm.errorMessage">{{ vm.errorMessage }}</div>
+    <wait-cursor display-when="vm.isBusy"></wait-cursor>
+    <table class="table table-responsive table-striped">
+        <tr ng-repeat="quest in vm.quests track by quest.id">
+            <td>{{ quest.name }}</td>
+            <td>{{ quest.dueBy | date:'MM-dd HH:mm:ss' }}</td>
+            <td><a ng-href="#/editor/{{ quest.name }}" class="btn btn-sm btn-primary">Turn In</a></td>
+            <td><input type="submit" value="Delete" class="btn btn-danger btn-sm" ng-click="vm.deleteQuest(quest)"/></td>
+        </tr>
+    </table>
+
+    <form novalidate name="newQuestForm" ng-submit="vm.addQuest()">
+        <div class="form-group">
+            <label for="name">Quest Name</label>
+            <input class="form-control" type="text" id="name" name="name" ng-model="vm.newQuest.name" required ng-minlength="5" />
+            <span ng-show="newQuestForm.name.$error.required" class="text-warning">Name is required.</span>
+            <span ng-show="newQuestForm.name.$error.minlength" class="text-warning">Name must be at least 5 characters.</span>
+        </div>
+        <div class="form-group">
+            <label for="reward">Quest Reward</label>
+            <input class="form-control" type="text" id="reward" name="reward" ng-model="vm.newQuest.reward" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add"
+                   class="btn btn-success btn-sm"
+                   ng-disabled="newQuestForm.$invalid" />
+        </div>
+    </form>
+
+
+</div>
